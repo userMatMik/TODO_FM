@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+:root {
+  --checked-bg: linear-gradient(
+      150deg,
+      hsl(192, 100%, 67%),
+      hsl(280, 87%, 65%)
+    );
+  --bg-clr-dark: hsl(235, 21%, 11%);
+  --list-bg-clr-dark: hsl(235, 24%, 19%);
+  --list-text-dark: hsl(234, 39%, 85%);
+  --hover-dark: hsl(236, 33%, 92%);
+  --checked-text-dark: hsl(233, 14%, 35%);
+  --border-clr-dark: hsl(237, 14%, 26%);
+  --text-clr-dark: hsl(235, 16%, 43%);
+  --bg-img-dark: url("./images/bg-desktop-dark.jpg");
+  --bg-clr-light: hsl(0, 0%, 98%);
+  --list-text-light: hsl(235, 19%, 35%);
+  --checked-text-light: hsl(233, 11%, 84%);
+  --border-clr-light: hsl(236, 33%, 92%);
+  --text-clr-light: hsl(236, 9%, 61%);
+  --bg-img-dark: url("./images/bg-desktop-light.jpg");
+  --bg-clr: var(--bg-clr-dark);
+  --list-bg-clr: var(--list-bg-clr-dark);
+  --list-text-clr: var(--list-text-dark);
+  --hocer-clr: var(--hover-dark);
+  --checked-text-clr: var(--checked-text-dark);
+  --border-clr: var(--border-clr-dark);
+  --text-clr: var(--text-clr-dark);
+  --bg-img: var(--bg-img-dark);
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin and padding*/
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove list styles on ul */
+ul {
+  list-style: none;
+}
+
+/* Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Font inherit */
+input, button, textarea, select {
+  font: inherit;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  transition: 0.5s ease-in;
+}
+
+main {
+  display: grid;
+  justify-items: center;
+  grid-auto-rows: -webkit-min-content;
+  grid-auto-rows: min-content;
+  min-height: 100vh;
+  background-color: var(--bg-clr);
+  padding-bottom: 3rem;
+}
+
+.bg {
+  display: grid;
+  grid-template-rows: 300px 1fr;
+  width: 100%;
+}
+.bg__top {
+  height: 300px;
+  background-image: var(--bg-img);
+  background-size: cover;
+}
+
+.app {
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid red;
+}
+.app header {
+  display: flex;
+  justify-content: space-between;
+}
+.app header h1 {
+  font-size: 2.65rem;
+  color: #fafafa;
+}
+.app header .theme-switcher {
+  background-color: transparent;
+  border: none;
+}/*# sourceMappingURL=style.css.map */
