@@ -18,11 +18,11 @@
   --checked-text-light: hsl(233, 11%, 84%);
   --border-clr-light: hsl(236, 33%, 92%);
   --text-clr-light: hsl(236, 9%, 61%);
-  --bg-img-dark: url("./images/bg-desktop-light.jpg");
+  --bg-img-light: url("./images/bg-desktop-light.jpg");
   --bg-clr: var(--bg-clr-dark);
   --list-bg-clr: var(--list-bg-clr-dark);
   --list-text-clr: var(--list-text-dark);
-  --hocer-clr: var(--hover-dark);
+  --hover-clr: var(--hover-dark);
   --checked-text-clr: var(--checked-text-dark);
   --border-clr: var(--border-clr-dark);
   --text-clr: var(--text-clr-dark);
@@ -69,6 +69,7 @@ input, button, textarea, select {
 
 body {
   font-family: "Josefin Sans", sans-serif;
+  font-size: 1.125rem;
   transition: 0.5s ease-in;
 }
 
@@ -96,7 +97,8 @@ main {
 .app {
   width: 100%;
   max-width: 500px;
-  border: 1px solid red;
+  position: absolute;
+  top: 75px;
 }
 .app header {
   display: flex;
@@ -104,9 +106,72 @@ main {
 }
 .app header h1 {
   font-size: 2.65rem;
+  letter-spacing: 15px;
   color: #fafafa;
 }
 .app header .theme-switcher {
   background-color: transparent;
   border: none;
+}
+
+.add-task {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--list-bg-clr);
+  padding: 1.2rem 1.5rem;
+  border-radius: 5px;
+  margin-top: 2rem;
+  position: relative;
+}
+.add-task__btn {
+  display: grid;
+  place-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid var(--checked-text-clr);
+  background-color: transparent;
+  color: var(--checked-text-clr);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.add-task__input {
+  font-size: 1.125rem;
+  border: none;
+  padding-block: 3px;
+  background-color: transparent;
+  color: var(--list-text-clr);
+}
+.add-task__input:focus {
+  outline: 1px solid var(--checked-text-clr);
+}
+
+.tasks {
+  background-color: var(--list-bg-clr);
+}
+.tasks__container {
+  padding: 0;
+}
+
+.task {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--checked-text-clr);
+}
+.task__check {
+  background-color: var(--list-bg-clr);
+  border: 1px solid var(--checked-text-clr);
+}
+.task__text {
+  color: var(--list-text-clr);
+}
+.task__remove-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
