@@ -1,7 +1,25 @@
+let tasksArray = JSON.parse(localStorage.getItem('tasks'));
+
+const removeTask = (e) => {
+    if(e.target.classList.contains('task__remove-btn') || e.target.classList.contains('task__remove-icon')) {
+        const taskToRemove = e.target.closest('li')
+        taskToRemove.remove();
+        tasksArray = tasksArray.filter((task) => {
+            return task.id !== +taskToRemove.getAttribute('id')
+        })
+        updateLocalStorage();
+    } else {
+        return
+    }
+} 
+
+document.querySelector('.tasks__container').addEventListener('click', removeTask)
 
 
-const createTask = (task) => {
+
+const renderTask = ({id, text}) => {
     const taskItem = document.createElement('li');
+    taskItem.setAttribute('id', id);
     taskItem.classList.add('task');
     
     const checkboxElement = document.createElement('input');
@@ -10,7 +28,7 @@ const createTask = (task) => {
 
     const taskContent = document.createElement('p');
     taskContent.classList.add('task__text');
-    taskContent.textContent = task;
+    taskContent.textContent = text;
 
     const removeTaskBtn = document.createElement('button');
     removeTaskBtn.classList.add('task__remove-btn')
@@ -23,7 +41,7 @@ const createTask = (task) => {
     taskItem.appendChild(checkboxElement);
     taskItem.appendChild(taskContent);
     taskItem.appendChild(removeTaskBtn);
-
+    
     return taskItem;
 }
 
@@ -31,8 +49,27 @@ document.querySelector('.add-task__btn').addEventListener('click', (e) => {
     e.preventDefault();
     const tasksContainer = document.querySelector('.tasks__container');
     let newTaskContent = document.querySelector('#task-input').value;
-    console.log(newTaskContent);
 
-    tasksContainer.appendChild(createTask(newTaskContent));
+    let newTask = {
+        id: Date.now(),
+        text: newTaskContent,
+        isCompleted: false,
+    }
+
+    tasksArray.push(newTask);
+    
+    updateLocalStorage();
+
+    tasksContainer.appendChild(renderTask(newTask));
     document.querySelector('#task-input').value = "";
+})
+
+
+const updateLocalStorage = () => {
+    localStorage.setItem('tasks', JSON.stringify(tasksArray))
+}
+
+window.onload = tasksArray.forEach((task) => {
+    const tasksContainer = document.querySelector('.tasks__container');
+    tasksContainer.appendChild(renderTask(task));
 })
