@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
 :root {
+  --active-element: hsl(220, 98%, 61%);
   --checkbox-bg: linear-gradient(
       150deg,
       hsl(192, 100%, 67%),
@@ -134,7 +135,7 @@ main {
   border: 1px solid var(--checked-text-clr);
   background-color: transparent;
   color: var(--checked-text-clr);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   cursor: pointer;
 }
 .add-task__input {
@@ -150,9 +151,38 @@ main {
 
 .tasks {
   background-color: var(--list-bg-clr);
+  border-radius: 5px;
 }
 .tasks__container {
   padding: 0;
+}
+.tasks__controle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  padding: 0 1.5rem 1.2rem 1.5rem;
+}
+.tasks__count {
+  color: var(--text-clr);
+}
+.tasks__filters {
+  display: flex;
+  gap: 1rem;
+}
+.tasks__btn {
+  color: var(--text-clr);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+.tasks__btn:hover {
+  color: var(--hover-clr);
+}
+
+.active {
+  color: var(--active-element);
 }
 
 .task {
@@ -163,17 +193,21 @@ main {
   padding: 1.2rem 1.5rem;
   border-bottom: 1px solid var(--checked-text-clr);
 }
-.task__check {
-  background-color: var(--list-bg-clr);
-  border: 1px solid var(--checked-text-clr);
-}
 .task__text {
+  overflow: hidden;
   color: var(--list-text-clr);
+  cursor: pointer;
 }
 .task__remove-btn {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  display: grid;
+  place-content: center;
+}
+.task__remove-icon {
+  width: 12px;
+  height: 12px;
 }
 
 input[type=checkbox] {
@@ -186,6 +220,7 @@ input[type=checkbox] {
   border: 1px solid var(--checked-text-clr);
   border-radius: 50%;
   margin: 0;
+  cursor: pointer;
   display: grid;
   place-content: center;
 }
@@ -193,4 +228,28 @@ input[type=checkbox]:hover {
   background: linear-gradient(var(--list-bg-clr), var(--list-bg-clr)) padding-box, linear-gradient(150deg, hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%)) border-box;
   border: 1px solid transparent;
   border-radius: 50%;
+}
+
+input[type=checkbox]::before {
+  content: "";
+  color: transparent;
+  display: block;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background-color: transparent;
+  background-size: contain;
+}
+
+input[type=checkbox]:checked {
+  background-image: var(--checkbox-bg);
+}
+
+input[type=checkbox]:checked::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
+}
+
+input[type=checkbox]:checked + .task__text {
+  color: var(--checked-text-clr);
+  text-decoration: line-through;
 }/*# sourceMappingURL=style.css.map */

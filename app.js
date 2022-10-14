@@ -1,4 +1,8 @@
-let tasksArray = JSON.parse(localStorage.getItem('tasks'));
+let tasksArray;
+
+tasksArray = JSON.parse(localStorage.getItem('tasks'));
+console.log(localStorage)
+console.log(tasksArray)
 
 const removeTask = (e) => {
     if(e.target.classList.contains('task__remove-btn') || e.target.classList.contains('task__remove-icon')) {
@@ -14,8 +18,6 @@ const removeTask = (e) => {
 } 
 
 document.querySelector('.tasks__container').addEventListener('click', removeTask)
-
-
 
 const renderTask = ({id, text}) => {
     const taskItem = document.createElement('li');
@@ -56,6 +58,8 @@ document.querySelector('.add-task__btn').addEventListener('click', (e) => {
         isCompleted: false,
     }
 
+    console.log(newTask)
+    tasksArray = tasksArray || [];
     tasksArray.push(newTask);
     
     updateLocalStorage();
@@ -69,7 +73,9 @@ const updateLocalStorage = () => {
     localStorage.setItem('tasks', JSON.stringify(tasksArray))
 }
 
-window.onload = tasksArray.forEach((task) => {
-    const tasksContainer = document.querySelector('.tasks__container');
-    tasksContainer.appendChild(renderTask(task));
-})
+if ( tasksArray != null) {
+    window.onload = tasksArray.forEach((task) => {
+        const tasksContainer = document.querySelector('.tasks__container');
+        tasksContainer.appendChild(renderTask(task));
+    })
+}
