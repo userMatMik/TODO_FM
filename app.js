@@ -4,6 +4,20 @@ tasksArray = JSON.parse(localStorage.getItem('tasks'));
 console.log(localStorage)
 console.log(tasksArray)
 
+const changeStatus = (e) => {
+    if (!e.target.classList.contains('task__check')) {
+        return
+    } else {
+        const taskEl = e.target.closest('li');
+        const taskID = taskEl.getAttribute('id');
+        const taskToUpdate = tasksArray.find((task) => task.id == taskID);
+        taskToUpdate.isCompleted = !taskToUpdate.isCompleted
+        updateLocalStorage();
+    } 
+} 
+
+document.querySelector('.tasks__container').addEventListener('change', changeStatus);
+
 const removeTask = (e) => {
     if(e.target.classList.contains('task__remove-btn') || e.target.classList.contains('task__remove-icon')) {
         const taskToRemove = e.target.closest('li')
@@ -19,7 +33,7 @@ const removeTask = (e) => {
 
 document.querySelector('.tasks__container').addEventListener('click', removeTask)
 
-const renderTask = ({id, text}) => {
+const renderTask = ({id, text, isCompleted}) => {
     const taskItem = document.createElement('li');
     taskItem.setAttribute('id', id);
     taskItem.classList.add('task');
@@ -27,6 +41,7 @@ const renderTask = ({id, text}) => {
     const checkboxElement = document.createElement('input');
     checkboxElement.setAttribute('type', 'checkbox');
     checkboxElement.classList.add('task__check');
+    isCompleted ? checkboxElement.checked = true : checkboxElement.checked = false;
 
     const taskContent = document.createElement('p');
     taskContent.classList.add('task__text');
