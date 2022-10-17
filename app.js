@@ -1,9 +1,49 @@
+const tasksContainer = document.querySelector('.tasks__container');
 let tasksArray;
 
 tasksArray = JSON.parse(localStorage.getItem('tasks'));
 console.log(localStorage)
 console.log(tasksArray)
 
+
+//filters
+const handleFilters = (e) => {
+    const clickedFilter = e.target;
+    const allFilters = document.querySelectorAll('.tasks__filter');
+    let counter = document.querySelector('.tasks__count');
+    let filteredArray;
+
+    allFilters.forEach((filter) => filter.classList.remove('active'))
+    clickedFilter.classList.add('active');
+   
+    if (clickedFilter.innerText === 'Active') {
+        filteredArray = tasksArray.filter((task) => task.isCompleted === false);
+        tasksContainer.innerHTML = "";
+        filteredArray.forEach((task) => {
+            tasksContainer.appendChild(renderTask(task));
+        })
+        counter.textContent = `${filteredArray.length} items left`; 
+    } else if (clickedFilter.innerText === 'Completed') {
+        filteredArray = tasksArray.filter((task) => task.isCompleted === true);
+        tasksContainer.innerHTML = "";
+        filteredArray.forEach((task) => {
+            tasksContainer.appendChild(renderTask(task));
+        })
+        counter.textContent = `${filteredArray.length} items left`;
+    } else {
+        tasksContainer.innerHTML = "";
+        tasksArray.forEach((task) => {
+            tasksContainer.appendChild(renderTask(task));
+        })
+        counter.textContent = `${tasksArray.length} items left`
+    }
+}
+
+document.querySelectorAll('.tasks__filter').forEach((filter) => {
+    filter.addEventListener('click', handleFilters)
+})
+
+// change task status
 const changeStatus = (e) => {
     if (!e.target.classList.contains('task__check')) {
         return
@@ -18,6 +58,26 @@ const changeStatus = (e) => {
 
 document.querySelector('.tasks__container').addEventListener('change', changeStatus);
 
+// clear all completed tasks
+const clearAllCompleted = () => {
+    completedBtn = document.querySelector('#completed');
+    tasksArray = tasksArray.filter((task) => (task.isCompleted === false))
+    tasksContainer.innerHTML = "";
+    
+    if (completedBtn.classList.contains('active')) {
+        return
+    } else {
+        tasksArray.forEach((task) => {
+            tasksContainer.appendChild(renderTask(task))
+        })
+    }
+    
+    updateLocalStorage();
+}
+
+document.querySelector('#clear-completed').addEventListener('click', clearAllCompleted)
+
+//remove task
 const removeTask = (e) => {
     if(e.target.classList.contains('task__remove-btn') || e.target.classList.contains('task__remove-icon')) {
         const taskToRemove = e.target.closest('li')
@@ -33,9 +93,16 @@ const removeTask = (e) => {
 
 document.querySelector('.tasks__container').addEventListener('click', removeTask)
 
+const updateCounter = () => {
+    const counter = document.querySelector('.tasks__count');
+    counter.textContent = `${tasksArray.length} items left`
+}
+
+// render task
 const renderTask = ({id, text, isCompleted}) => {
     const taskItem = document.createElement('li');
     taskItem.setAttribute('id', id);
+    taskItem.setAttribute('draggable', 'true');
     taskItem.classList.add('task');
     
     const checkboxElement = document.createElement('input');
@@ -62,6 +129,7 @@ const renderTask = ({id, text, isCompleted}) => {
     return taskItem;
 }
 
+// add task
 document.querySelector('.add-task__btn').addEventListener('click', (e) => {
     e.preventDefault();
     const tasksContainer = document.querySelector('.tasks__container');
@@ -90,7 +158,6 @@ const updateLocalStorage = () => {
 
 if ( tasksArray != null) {
     window.onload = tasksArray.forEach((task) => {
-        const tasksContainer = document.querySelector('.tasks__container');
         tasksContainer.appendChild(renderTask(task));
     })
 }

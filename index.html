@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="app.js" defer></script>
+    <script type="module" src="app.js"></script>
+    <script type="module" src="dragdrop.js"></script>
     <title>TODO | FrontEnd Mentor</title>
 </head>
 <body>
@@ -35,7 +36,7 @@
                     <div class="tasks__filters">
                         <button class="tasks__btn tasks__filter active">All</button>
                         <button class="tasks__btn tasks__filter">Active</button>
-                        <button class="tasks__btn tasks__filter">Completed</button>
+                        <button class="tasks__btn tasks__filter" id="completed">Completed</button>
                     </div>
                     <button class="tasks__btn" id="clear-completed">Clear completed</button>
                 </div>
