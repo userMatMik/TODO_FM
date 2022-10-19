@@ -1,10 +1,7 @@
-const tasksContainer = document.querySelector('.tasks__container');
-let tasksArray;
+export const tasksContainer = document.querySelector('.tasks__container');
+export let tasksArray;
 
 tasksArray = JSON.parse(localStorage.getItem('tasks'));
-console.log(localStorage)
-console.log(tasksArray)
-
 
 //filters
 const handleFilters = (e) => {
@@ -152,7 +149,7 @@ document.querySelector('.add-task__btn').addEventListener('click', (e) => {
 })
 
 
-const updateLocalStorage = () => {
+export const updateLocalStorage = () => {
     localStorage.setItem('tasks', JSON.stringify(tasksArray))
 }
 

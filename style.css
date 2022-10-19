@@ -192,6 +192,7 @@ main {
   align-items: center;
   padding: 1.2rem 1.5rem;
   border-bottom: 1px solid var(--checked-text-clr);
+  cursor: move;
 }
 .task__text {
   overflow: hidden;
@@ -252,4 +253,8 @@ input[type=checkbox]:checked::before {
 input[type=checkbox]:checked + .task__text {
   color: var(--checked-text-clr);
   text-decoration: line-through;
+}
+
+.dragging {
+  background-color: var(--active-element);
 }/*# sourceMappingURL=style.css.map */
