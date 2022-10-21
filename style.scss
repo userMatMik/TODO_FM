@@ -20,6 +20,7 @@
 
     // Light mode colors
     --bg-clr-light: hsl(0, 0%, 98%);
+    --list-bg-clr-light: hsl(0, 0%, 98%);
     --list-text-light: hsl(235, 19%, 35%);
     --checked-text-light: hsl(233, 11%, 84%);
     --border-clr-light: hsl(236, 33%, 92%);
@@ -65,7 +66,6 @@ ul{
 
 /* Improve media defaults */
 img, picture, video, canvas, svg {
-    display: block;
     max-width: 100%;
 }
 
@@ -77,7 +77,28 @@ input, button, textarea, select {
 body {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 1.125rem;
-    transition: 0.5s ease-in;
+}
+
+body.light {
+    --bg-clr: var(--bg-clr-light);
+    --list-bg-clr: var(--list-bg-clr-light);
+    --list-text-clr: var(--list-text-light);
+    --hover-clr: var(--hover-light);
+    --checked-text-clr: var(--checked-text-light);
+    --border-clr: var(--border-clr-light);
+    --text-clr: var(--text-clr-light);
+    --bg-img: var(--bg-img-light);
+}
+
+body.dark {
+    --bg-clr: var(--bg-clr-dark);
+    --list-bg-clr: var(--list-bg-clr-dark);
+    --list-text-clr: var(--list-text-dark);
+    --hover-clr: var(--hover-dark);
+    --checked-text-clr: var(--checked-text-dark);
+    --border-clr: var(--border-clr-dark);
+    --text-clr: var(--text-clr-dark);
+    --bg-img: var(--bg-img-dark);
 }
 
 main {
@@ -123,6 +144,23 @@ main {
             border: none;
         }
     }
+
+    .error {
+        position: absolute;
+        background-color: var(--active-element);
+        color: var(--list-text-clr);
+        font-size: 0.85rem;
+        text-align: center;
+        width: 80%;
+        transform: translateX(12%);
+        padding: 3px 10px;
+
+        display: none;
+
+        &__visible {
+            display: block;
+        }
+    }
 }
 
 .add-task{
@@ -133,9 +171,8 @@ main {
     background-color: var(--list-bg-clr);
     padding: 1.2rem 1.5rem;
     border-radius: 5px;
-    // box-shadow: 10px -25px 28px rgb(0 0 0 / 30%);
+    box-shadow: 10px -25px 28px rgb(0 0 0 / 30%);
     margin-top: 2rem;
-    // margin-bottom: 1rem;
     position: relative;
 
     &__btn {
@@ -166,10 +203,12 @@ main {
 
 .tasks {
     background-color: var(--list-bg-clr);
+    box-shadow: -5px 0 20px 15px rgb(0 0 0 / 20%);
     border-radius: 5px;
 
     &__container {
         padding: 0;
+        margin-bottom: 0;
     }
 
     &__controle {
@@ -177,7 +216,7 @@ main {
         justify-content: space-between;
         align-items: center;
         font-size: 0.85rem;
-        padding: 0 1.5rem 1.2rem 1.5rem;
+        padding: 1rem 1.5rem;
     }
 
     &__count {
@@ -200,6 +239,27 @@ main {
             color: var(--hover-clr);
         }
     }
+
+    &__callout {
+        color: var(--list-text-clr);
+        padding: 5rem 1.5rem 4rem;
+        display: none;
+
+        .callout-small { 
+            text-align: center;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .callout-big {
+            font-size: 1.5rem;
+            color: var(--active-element);
+            text-align: center;
+        } 
+
+        &--visible { 
+            display: block;
+        }
+    }
 }
 
 .active {
@@ -218,7 +278,7 @@ main {
     &__text {
         overflow: hidden;
         color: var(--list-text-clr);
-        cursor: pointer;
+        cursor: move;
     }
 
     &__remove-btn {
@@ -234,13 +294,7 @@ main {
         width: 12px;
         height: 12px;
     }
-
-    // &:first-of-type {
-    //     border-top-left-radius: 5px;
-    //     border-top-right-radius: 5px;
-    // }
 }
-
 
 input[type=checkbox] {
     -webkit-appearance: none;
@@ -295,8 +349,30 @@ input[type=checkbox]:checked + .task__text {
     background-color: var(--active-element);
 }
 
+// dark theme switch
+
+.theme-switcher {
+    position: relative;
+    right: 10px;
+    height: 26px;
+    width: 26px;
+}
+
+.theme-switcher svg{
+    cursor: pointer;
+    position: absolute;
+}
+
+.theme svg path{
+    fill: var(--list-text-clr);
+}
+
+.sun, .moon {
+    display: none;
+}
+
+.actv {
+    display: block;
+}
 
 
-
-  
-  

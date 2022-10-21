@@ -2,8 +2,6 @@ import { tasksContainer } from "./app.js";
 import { tasksArray } from "./app.js";
 import { updateLocalStorage } from "./app.js";
 
-console.log(tasksArray)
-
 tasksContainer.addEventListener('dragstart', (e) => {
     e.target.classList.add('dragging');
 })

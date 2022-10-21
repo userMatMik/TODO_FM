@@ -15,6 +15,7 @@
   --text-clr-dark: hsl(235, 16%, 43%);
   --bg-img-dark: url("./images/bg-desktop-dark.jpg");
   --bg-clr-light: hsl(0, 0%, 98%);
+  --list-bg-clr-light: hsl(0, 0%, 98%);
   --list-text-light: hsl(235, 19%, 35%);
   --checked-text-light: hsl(233, 11%, 84%);
   --border-clr-light: hsl(236, 33%, 92%);
@@ -59,7 +60,6 @@ ul {
 
 /* Improve media defaults */
 img, picture, video, canvas, svg {
-  display: block;
   max-width: 100%;
 }
 
@@ -71,7 +71,28 @@ input, button, textarea, select {
 body {
   font-family: "Josefin Sans", sans-serif;
   font-size: 1.125rem;
-  transition: 0.5s ease-in;
+}
+
+body.light {
+  --bg-clr: var(--bg-clr-light);
+  --list-bg-clr: var(--list-bg-clr-light);
+  --list-text-clr: var(--list-text-light);
+  --hover-clr: var(--hover-light);
+  --checked-text-clr: var(--checked-text-light);
+  --border-clr: var(--border-clr-light);
+  --text-clr: var(--text-clr-light);
+  --bg-img: var(--bg-img-light);
+}
+
+body.dark {
+  --bg-clr: var(--bg-clr-dark);
+  --list-bg-clr: var(--list-bg-clr-dark);
+  --list-text-clr: var(--list-text-dark);
+  --hover-clr: var(--hover-dark);
+  --checked-text-clr: var(--checked-text-dark);
+  --border-clr: var(--border-clr-dark);
+  --text-clr: var(--text-clr-dark);
+  --bg-img: var(--bg-img-dark);
 }
 
 main {
@@ -114,6 +135,20 @@ main {
   background-color: transparent;
   border: none;
 }
+.app .error {
+  position: absolute;
+  background-color: var(--active-element);
+  color: var(--list-text-clr);
+  font-size: 0.85rem;
+  text-align: center;
+  width: 80%;
+  transform: translateX(12%);
+  padding: 3px 10px;
+  display: none;
+}
+.app .error__visible {
+  display: block;
+}
 
 .add-task {
   display: grid;
@@ -123,6 +158,7 @@ main {
   background-color: var(--list-bg-clr);
   padding: 1.2rem 1.5rem;
   border-radius: 5px;
+  box-shadow: 10px -25px 28px rgba(0, 0, 0, 0.3);
   margin-top: 2rem;
   position: relative;
 }
@@ -151,17 +187,19 @@ main {
 
 .tasks {
   background-color: var(--list-bg-clr);
+  box-shadow: -5px 0 20px 15px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
 .tasks__container {
   padding: 0;
+  margin-bottom: 0;
 }
 .tasks__controle {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.85rem;
-  padding: 0 1.5rem 1.2rem 1.5rem;
+  padding: 1rem 1.5rem;
 }
 .tasks__count {
   color: var(--text-clr);
@@ -180,6 +218,24 @@ main {
 .tasks__btn:hover {
   color: var(--hover-clr);
 }
+.tasks__callout {
+  color: var(--list-text-clr);
+  padding: 5rem 1.5rem 4rem;
+  display: none;
+}
+.tasks__callout .callout-small {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.tasks__callout .callout-big {
+  font-size: 1.5rem;
+  color: var(--active-element);
+  text-align: center;
+}
+.tasks__callout--visible {
+  display: block;
+}
 
 .active {
   color: var(--active-element);
@@ -197,7 +253,7 @@ main {
 .task__text {
   overflow: hidden;
   color: var(--list-text-clr);
-  cursor: pointer;
+  cursor: move;
 }
 .task__remove-btn {
   background-color: transparent;
@@ -257,4 +313,28 @@ input[type=checkbox]:checked + .task__text {
 
 .dragging {
   background-color: var(--active-element);
+}
+
+.theme-switcher {
+  position: relative;
+  right: 10px;
+  height: 26px;
+  width: 26px;
+}
+
+.theme-switcher svg {
+  cursor: pointer;
+  position: absolute;
+}
+
+.theme svg path {
+  fill: var(--list-text-clr);
+}
+
+.sun, .moon {
+  display: none;
+}
+
+.actv {
+  display: block;
 }/*# sourceMappingURL=style.css.map */
