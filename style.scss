@@ -17,6 +17,7 @@
     --border-clr-dark: hsl(237, 14%, 26%);
     --text-clr-dark: hsl(235, 16%, 43%);
     --bg-img-dark: url("./images/bg-desktop-dark.jpg");
+    --bg-img-mobile-dark: url("./images/bg-mobile-dark.jpg");
 
     // Light mode colors
     --bg-clr-light: hsl(0, 0%, 98%);
@@ -26,6 +27,7 @@
     --border-clr-light: hsl(236, 33%, 92%);
     --text-clr-light: hsl(236, 9%, 61%);
     --bg-img-light: url("./images/bg-desktop-light.jpg");
+    --bg-img-mobile-light: url("./images/bg-mobile-light.jpg");
 
     --bg-clr: var(--bg-clr-dark);
     --list-bg-clr: var(--list-bg-clr-dark);
@@ -35,6 +37,7 @@
     --border-clr: var(--border-clr-dark);
     --text-clr: var(--text-clr-dark);
     --bg-img: var(--bg-img-dark);
+    --bg-img-mobile: var(--bg-img-mobile-dark);
 }
 
 /* Box sizing rules */
@@ -88,6 +91,7 @@ body.light {
     --border-clr: var(--border-clr-light);
     --text-clr: var(--text-clr-light);
     --bg-img: var(--bg-img-light);
+    --bg-img-mobile: var(--bg-img-mobile-light);
 }
 
 body.dark {
@@ -99,6 +103,7 @@ body.dark {
     --border-clr: var(--border-clr-dark);
     --text-clr: var(--text-clr-dark);
     --bg-img: var(--bg-img-dark);
+    --bg-img-mobile: var(--bg-img-mobile-dark);
 }
 
 main {
@@ -131,6 +136,7 @@ main {
 
     header {
         display: flex;
+        align-items: center;
         justify-content: space-between;
 
         h1 {
@@ -141,7 +147,7 @@ main {
 
         .theme-switcher {
             background-color: transparent;
-            border: none;
+            border: none
         }
     }
 
@@ -160,6 +166,13 @@ main {
         &__visible {
             display: block;
         }
+    }
+
+    footer {
+        font-size: 0.875rem;
+        color: var(--text-clr); 
+        text-align: center;
+        margin-top: 3rem;
     }
 }
 
@@ -215,11 +228,12 @@ main {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: 0.85rem;
+        font-size: 0.875rem;
         padding: 1rem 1.5rem;
     }
 
     &__count {
+        font-size: 0.875rem;
         color: var(--text-clr); 
     }
 
@@ -238,6 +252,7 @@ main {
         &:hover {
             color: var(--hover-clr);
         }
+
     }
 
     &__callout {
@@ -361,6 +376,7 @@ input[type=checkbox]:checked + .task__text {
 .theme-switcher svg{
     cursor: pointer;
     position: absolute;
+    top: 0;
 }
 
 .theme svg path{
