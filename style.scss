@@ -120,10 +120,19 @@ main {
     grid-template-rows: 300px 1fr;
     width: 100%;
 
+    @media only screen and (max-width: 600px) {
+        grid-template-rows: 200px 1fr;
+    }
+
     &__top {
         height: 300px;
         background-image: var(--bg-img);
         background-size: cover;
+
+        @media only screen and (max-width: 600px) {
+            height: 200px;
+            background-image: var(--bg-img-mobile);
+        }
     }
 }
 
@@ -132,7 +141,10 @@ main {
     max-width: 500px;
     position: absolute;
     top: 75px;
-
+    @media only screen and (max-width: 600px) {
+        width: 90%;
+        top: 35px;
+    }
 
     header {
         display: flex;
@@ -143,6 +155,10 @@ main {
             font-size: 2.65rem;
             letter-spacing: 15px;
             color: #fafafa;
+
+            @media only screen and (max-width: 600px) {
+                font-size: 2rem;
+            }
         }
 
         .theme-switcher {
@@ -173,6 +189,9 @@ main {
         color: var(--text-clr); 
         text-align: center;
         margin-top: 3rem;
+        @media only screen and (max-width: 600px) {
+            margin-top: 7rem;
+        }
     }
 }
 
@@ -184,9 +203,12 @@ main {
     background-color: var(--list-bg-clr);
     padding: 1.2rem 1.5rem;
     border-radius: 5px;
-    box-shadow: 10px -25px 28px rgb(0 0 0 / 30%);
+    box-shadow: 10px -25px 28px rgb(0 0 0 / 10%);
     margin-top: 2rem;
     position: relative;
+    @media only screen and (max-width: 600px) {
+        margin-top: 1.5rem;
+    }
 
     &__btn {
         display: grid;
@@ -216,7 +238,7 @@ main {
 
 .tasks {
     background-color: var(--list-bg-clr);
-    box-shadow: -5px 0 20px 15px rgb(0 0 0 / 20%);
+    box-shadow: -5px 0 20px 15px rgb(0 0 0 / 10%);
     border-radius: 5px;
 
     &__container {
@@ -225,11 +247,13 @@ main {
     }
 
     &__controle {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-size: 0.875rem;
         padding: 1rem 1.5rem;
+
     }
 
     &__count {
@@ -240,6 +264,18 @@ main {
     &__filters {
         display: flex;
         gap: 1rem;
+        @media only screen and (max-width: 600px) {
+            position: absolute;
+            bottom: -75px;
+            left: 0;
+            background-color: var(--list-bg-clr);
+            box-shadow: -5px 0 20px 15px rgb(0 0 0 / 10%);
+            width: 100%;
+            font-size: 1.125rem;
+            padding: 1.2rem 1.5rem;
+            justify-content: center;
+            border-radius: 5px;
+        }
     }
 
     &__btn {
@@ -359,13 +395,11 @@ input[type=checkbox]:checked + .task__text {
 }
 
 //drag and drop styles
-
 .dragging { 
     background-color: var(--active-element);
 }
 
 // dark theme switch
-
 .theme-switcher {
     position: relative;
     right: 10px;
